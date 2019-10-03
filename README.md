@@ -16,8 +16,7 @@ maintenance such as tire rotations, oil changes, transmission flushes and much m
 
 ## First Milestone
 
-* [
-x] Description
+* [x] Description
 * [x] Intended Users &amp; user stories
 * [x] Entity-relationship diagrams (ERDs)
 * [x] Wireframes

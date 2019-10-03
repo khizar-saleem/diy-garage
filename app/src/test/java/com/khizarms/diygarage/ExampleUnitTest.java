@@ -1,4 +1,4 @@
-package com.khizarms.yourtube;
+package com.khizarms.diygarage;
 
 import org.junit.Test;
 

@@ -1,9 +1,7 @@
 ## User stories
 
 
-* As a broke college student who loves YouTube, I want to be able to easily access music that I have
-saved without having to pay for anything.
+* As someone who maintains their own cars, I would like to have an app that keeps records of all the work I have done.
 
 
-* As someone whose main way of downloading music is by converting YouTube videos into mp3 files on
-my computer, I would like a convenient way to do the same on my phone.
+* As someone who has spent thousands of dollars paying someone else to maintain my cars, I would like to learn how to do it on my own.

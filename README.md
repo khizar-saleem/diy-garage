@@ -11,6 +11,9 @@ maintenance such as tire rotations, oil changes, transmission flushes and much m
 * People who want to learn how to maintain their own cars.
 
 * [User stories](docs/user-stories.md)
+
+## Diagrams
+
 * [Entity Relationship Diagram](docs/erd.md)
 * [Wireframe Diagram](docs/wireframe.md)
 

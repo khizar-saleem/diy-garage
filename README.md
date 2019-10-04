@@ -7,7 +7,7 @@ maintenance such as tire rotations, oil changes, transmission flushes and much m
 
 ## Intended Users
 
-* People prefer to do their own car maintenance. 
+* People who prefer to do their own car maintenance. 
 * People who want to learn how to maintain their own cars.
 
 * [User stories](docs/user-stories.md)

@@ -1,0 +1,68 @@
+package com.khizarms.diygarage.model.entity;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+import java.util.Date;
+
+@Entity(
+    foreignKeys = {
+        @ForeignKey(
+            entity = Car.class,
+            childColumns = "car_id",
+            parentColumns = "car_id",
+            onDelete = ForeignKey.CASCADE
+        )
+    }
+)
+public class Service {
+
+  @PrimaryKey(autoGenerate = true)
+  @ColumnInfo(name = "service_id")
+  private long id;
+
+  @NonNull
+  @ColumnInfo(index = true)
+  private Date date = new Date();
+
+
+  private long mileage;
+
+  @ColumnInfo(name = "car_id", index = true)
+  private long carId;
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  @NonNull
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(@NonNull Date date) {
+    this.date = date;
+  }
+
+  public long getMileage() {
+    return mileage;
+  }
+
+  public void setMileage(long mileage) {
+    this.mileage = mileage;
+  }
+
+  public long getCarId() {
+    return carId;
+  }
+
+  public void setCarId(long carId) {
+    this.carId = carId;
+  }
+}

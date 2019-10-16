@@ -28,7 +28,7 @@ public class Service {
   private Date date = new Date();
 
 
-  private long mileage;
+  private int mileage;
 
   @ColumnInfo(name = "car_id", index = true)
   private long carId;
@@ -50,11 +50,11 @@ public class Service {
     this.date = date;
   }
 
-  public long getMileage() {
+  public int getMileage() {
     return mileage;
   }
 
-  public void setMileage(long mileage) {
+  public void setMileage(int mileage) {
     this.mileage = mileage;
   }
 

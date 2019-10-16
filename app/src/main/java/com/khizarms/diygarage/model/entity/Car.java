@@ -13,18 +13,18 @@ public class Car {
 
   @ColumnInfo(index = true)
   @NonNull
-  public String make;
+  private String make;
 
   @ColumnInfo(index = true)
   @NonNull
-  public String model;
+  private String model;
 
   @ColumnInfo(index = true)
-    public int year;
+  private int year;
 
   @ColumnInfo(index = true)
   @NonNull
-  public Date acquisition = new Date();
+  private Date acquisition = new Date();
 
   public long getId() {
     return id;

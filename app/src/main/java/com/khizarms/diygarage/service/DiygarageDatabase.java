@@ -13,10 +13,10 @@ import com.khizarms.diygarage.model.entity.Service;
 import java.util.Date;
 
 @Database(
-    entities = {Action.class},
-    version = 1, exportSchema = true
+    entities = {Action.class, Service.class, Car.class},
+    version = 3, exportSchema = true
 )
-
+@TypeConverters(DiygarageDatabase.Converters.class)
 public abstract class DiygarageDatabase extends RoomDatabase {
 
   protected DiygarageDatabase() {}

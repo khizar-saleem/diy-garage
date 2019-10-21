@@ -7,16 +7,17 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
-@Entity(
-    foreignKeys = {
-        @ForeignKey(
-            entity = Car.class,
-            childColumns = "car_id",
-            parentColumns = "car_id",
-            onDelete = ForeignKey.CASCADE
-        )
-    }
-)
+//@Entity(
+//    foreignKeys = {
+//        @ForeignKey(
+//            entity = Car.class,
+//            childColumns = "car_id",
+//            parentColumns = "car_id",
+//            onDelete = ForeignKey.CASCADE
+//        )
+//    }
+//)
+@Entity
 public class Service {
 
   @PrimaryKey(autoGenerate = true)

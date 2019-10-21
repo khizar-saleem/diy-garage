@@ -6,16 +6,17 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(
-    foreignKeys = {
-        @ForeignKey(
-            entity = Service.class,
-            childColumns = "service_id",
-            parentColumns = "service_id",
-            onDelete = ForeignKey.CASCADE
-        )
-    }
-)
+//@Entity(
+//    foreignKeys = {
+//        @ForeignKey(
+//            entity = Service.class,
+//            childColumns = "service_id",
+//            parentColumns = "service_id",
+//            onDelete = ForeignKey.CASCADE
+//        )
+//    }
+//)
+@Entity
 public class Action {
 
   @PrimaryKey(autoGenerate = true)
@@ -29,8 +30,8 @@ public class Action {
   @ColumnInfo(name = "service_id", index = true)
   private long serviceId;
 
-  @NonNull
-  private ServiceType serviceType;
+//  @NonNull
+//  private ServiceType serviceType;
 
   public long getId() {
     return id;
@@ -64,20 +65,20 @@ public class Action {
     this.serviceId = serviceId;
   }
 
-  @NonNull
-  public ServiceType getServiceType() {
-    return serviceType;
-  }
+//  @NonNull
+//  public ServiceType getServiceType() {
+//    return serviceType;
+//  }
+//
+//  public void setServiceType(@NonNull ServiceType serviceType) {
+//    this.serviceType = serviceType;
+//  }
 
-  public void setServiceType(@NonNull ServiceType serviceType) {
-    this.serviceType = serviceType;
-  }
-
-  public enum ServiceType {
-
-    MOTOR,
-    TRANSMISSION,
-    COSMETIC,
-
-  }
+//  public enum ServiceType {
+//
+//    MOTOR,
+//    TRANSMISSION,
+//    COSMETIC,
+//
+//  }
 }

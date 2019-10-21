@@ -2,9 +2,11 @@ package com.khizarms.diygarage.model.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
+@Entity
 public class Car {
 
   @PrimaryKey(autoGenerate = true)
@@ -22,9 +24,9 @@ public class Car {
   @ColumnInfo(index = true)
   private int year;
 
-  @ColumnInfo(index = true)
-  @NonNull
-  private Date acquisition = new Date();
+//  @ColumnInfo(index = true)
+//  @NonNull
+//  private Date acquisition = new Date();
 
   public long getId() {
     return id;
@@ -59,13 +61,13 @@ public class Car {
   public void setYear(int year) {
     this.year = year;
   }
-
-  @NonNull
-  public Date getAcquisition() {
-    return acquisition;
-  }
-
-  public void setAcquisition(@NonNull Date acquisition) {
-    this.acquisition = acquisition;
-  }
+//
+//  @NonNull
+//  public Date getAcquisition() {
+//    return acquisition;
+//  }
+//
+//  public void setAcquisition(@NonNull Date acquisition) {
+//    this.acquisition = acquisition;
+//  }
 }

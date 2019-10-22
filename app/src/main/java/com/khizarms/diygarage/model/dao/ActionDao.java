@@ -24,7 +24,7 @@ public interface ActionDao {
 
 
   @Update
-  int update(Action action);
+  int update(Action... actions);
 
   @Delete
   int delete(Action... actions);

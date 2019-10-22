@@ -1,5 +1,6 @@
 package com.khizarms.diygarage.model.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -18,7 +19,9 @@ public interface ActionDao {
   @Insert
   List<Long> insert(Collection<Action> actions);
 
-//  @Query("SELECT * FROM ")
+  @Query("SELECT * FROM `Action` WHERE service_id = :serviceId ORDER BY action_id")
+  LiveData<List<Action>> getServiceActions(long serviceId);
+
 
   @Update
   int update(Action action);

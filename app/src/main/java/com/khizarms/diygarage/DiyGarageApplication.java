@@ -4,7 +4,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.khizarms.diygarage.service.DiygarageDatabase;
 
-public class DiygarageApplication extends Application {
+public class DiyGarageApplication extends Application {
 
   @Override
   public void onCreate() {

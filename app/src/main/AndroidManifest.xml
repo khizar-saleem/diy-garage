@@ -3,7 +3,7 @@
   package="com.khizarms.diygarage">
 
   <application
-    android:name=".DiygarageApplication"
+    android:name=".DiyGarageApplication"
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"

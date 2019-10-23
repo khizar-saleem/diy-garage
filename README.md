@@ -34,3 +34,14 @@ DIY'ers or people who just want an app to keep records of their cars.
 * [x] Intended Users &amp; user stories
 * [x] Entity-relationship diagrams (ERDs)
 * [x] Wireframes
+
+## Second Milestone
+
+* [x] Description
+* [x] Intended Users &amp; user stories
+* [x] Entity-relationship diagrams (ERDs)
+* [] Entity Classes
+* [] DAO Interfaces
+* [] Database Class
+* [] DDL
+* [] Chrome Inspectability of Data Model

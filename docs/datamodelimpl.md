@@ -22,5 +22,5 @@
 
 ### Data Definition Language
 
-* [DDL](docs/ddl.md)
+* [DDL](ddl.md)
 

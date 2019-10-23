@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">DIY Garage</string>
+  <string name="title_service_list">Services</string>
+  <string name="title_service_detail">Service Detail</string>
 </resources>

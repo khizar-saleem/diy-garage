@@ -22,6 +22,12 @@ DIY'ers or people who just want an app to keep records of their cars.
 * [Entity Relationship Diagram](docs/erd.md)
 * [Wireframe Diagram](docs/wireframe.md)
 
+
+## Data Definition Language
+
+* [DDL](docs/ddl.md)
+
+
 ## First Milestone
 
 * [x] Description

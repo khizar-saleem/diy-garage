@@ -1,3 +1,5 @@
+# Welcome!
+
 ## Description
 
 DIY Garage is an app that is meant to rid the world of the fear of getting down and dirty with 

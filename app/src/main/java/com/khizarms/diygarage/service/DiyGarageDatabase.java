@@ -17,18 +17,18 @@ import java.util.Date;
     entities = {Action.class, Service.class, Car.class},
     version = 3, exportSchema = true
 )
-@TypeConverters(DiygarageDatabase.Converters.class)
-public abstract class DiygarageDatabase extends RoomDatabase {
+@TypeConverters(DiyGarageDatabase.Converters.class)
+public abstract class DiyGarageDatabase extends RoomDatabase {
 
-  protected DiygarageDatabase() {}
+  protected DiyGarageDatabase() {}
 
   private static Application applicationContext;
 
   public static void setApplicationContext(Application applicationContext) {
-    DiygarageDatabase.applicationContext = applicationContext;
+    DiyGarageDatabase.applicationContext = applicationContext;
   }
 
-  public static DiygarageDatabase getInstance() {
+  public static DiyGarageDatabase getInstance() {
     return InstanceHolder.INSTANCE;
   }
 
@@ -36,11 +36,11 @@ public abstract class DiygarageDatabase extends RoomDatabase {
 
   private static class InstanceHolder {
 
-    private static final DiygarageDatabase INSTANCE;
+    private static final DiyGarageDatabase INSTANCE;
 
     static {
       INSTANCE =
-          Room.databaseBuilder(applicationContext, DiygarageDatabase.class, "diygarage_db").build();
+          Room.databaseBuilder(applicationContext, DiyGarageDatabase.class, "diygarage_db").build();
 
     }
   }

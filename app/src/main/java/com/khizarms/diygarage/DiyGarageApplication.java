@@ -2,7 +2,7 @@ package com.khizarms.diygarage;
 
 import android.app.Application;
 import com.facebook.stetho.Stetho;
-import com.khizarms.diygarage.service.DiygarageDatabase;
+import com.khizarms.diygarage.service.DiyGarageDatabase;
 
 public class DiyGarageApplication extends Application {
 
@@ -10,8 +10,8 @@ public class DiyGarageApplication extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
-      DiygarageDatabase.setApplicationContext(this);
-    final DiygarageDatabase database = DiygarageDatabase.getInstance();
+      DiyGarageDatabase.setApplicationContext(this);
+    final DiyGarageDatabase database = DiyGarageDatabase.getInstance();
     new Thread(new Runnable() {
       @Override
       public void run() {

@@ -22,11 +22,9 @@ DIY'ers or people who just want an app to keep records of their cars.
 * [Entity Relationship Diagram](docs/erd.md)
 * [Wireframe Diagram](docs/wireframe.md)
 
+## Data Model Implementation 
 
-## Data Definition Language
-
-* [DDL](docs/ddl.md)
-
+* [Implementation](docs/datamodelimpl.md)
 
 ## First Milestone
 
@@ -40,8 +38,8 @@ DIY'ers or people who just want an app to keep records of their cars.
 * [x] Description
 * [x] Intended Users &amp; user stories
 * [x] Entity-relationship diagrams (ERDs)
-* [] Entity Classes
-* [] DAO Interfaces
-* [] Database Class
-* [] DDL
-* [] Chrome Inspectability of Data Model
+* [x] Entity Classes
+* [x] DAO Interfaces
+* [x] Database Class
+* [x] DDL
+* [x] Chrome Inspectability of Data Model

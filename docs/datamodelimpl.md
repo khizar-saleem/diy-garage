@@ -18,3 +18,9 @@
 
 ### Database Class
 
+* [`DiyGarageDatabase`](https://github.com/khizar-saleem/diy-garage/blob/master/app/src/main/java/com/khizarms/diygarage/service/DiyGarageDatabase.java)
+
+### Data Definition Language
+
+* [DDL](docs/ddl.md)
+

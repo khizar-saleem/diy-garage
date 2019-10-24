@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.pojo.CarWithServices;
@@ -15,6 +16,7 @@ public interface CarDao {
   @Insert
   long insert(Car car);
 
+  @Transaction
   @Query("SELECT * FROM Car WHERE car_id = :carId")
   LiveData<CarWithServices> getDetails(long carId);
 

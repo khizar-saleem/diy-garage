@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 import com.khizarms.diygarage.model.dao.ActionDao;
+import com.khizarms.diygarage.model.dao.CarDao;
+import com.khizarms.diygarage.model.dao.ServiceDao;
 import com.khizarms.diygarage.model.entity.Action;
 import com.khizarms.diygarage.model.entity.Action.ServiceType;
 import com.khizarms.diygarage.model.entity.Car;
@@ -31,6 +33,10 @@ public abstract class DiyGarageDatabase extends RoomDatabase {
   public static DiyGarageDatabase getInstance() {
     return InstanceHolder.INSTANCE;
   }
+
+  public abstract CarDao getCarDao();
+
+  public abstract ServiceDao getServiceDao();
 
   public abstract ActionDao getActionDao();
 

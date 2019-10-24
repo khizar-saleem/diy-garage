@@ -3,8 +3,11 @@ package com.khizarms.diygarage.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +20,8 @@ import com.khizarms.diygarage.R;
 
 import com.khizarms.diygarage.controller.dummy.DummyContent;
 
+import com.khizarms.diygarage.model.entity.Car;
+import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 import java.util.List;
 
 /**
@@ -31,11 +36,20 @@ public class ServiceListActivity extends AppCompatActivity {
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
    */
   private boolean mTwoPane;
+  private ServiceListViewModel viewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_service_list);
+
+    Spinner spinner = findViewById(R.id.car_selector);
+
+    viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
+    viewModel.getCars().observe(this, (cars) -> {
+      ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
+      spinner.setAdapter(adapter);
+    });
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -136,4 +150,5 @@ public class ServiceListActivity extends AppCompatActivity {
       }
     }
   }
+
 }

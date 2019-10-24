@@ -9,12 +9,16 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.pojo.CarWithServices;
+import java.util.List;
 
 @Dao
 public interface CarDao {
 
   @Insert
   long insert(Car car);
+
+  @Query("SELECT * FROM Car ORDER BY make, model, year")
+  LiveData<List<Car>> getAll();
 
   @Transaction
   @Query("SELECT * FROM Car WHERE car_id = :carId")

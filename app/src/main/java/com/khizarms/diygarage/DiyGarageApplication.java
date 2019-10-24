@@ -10,8 +10,8 @@ public class DiyGarageApplication extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
-      DiyGarageDatabase.setApplicationContext(this);
-    final DiyGarageDatabase database = DiyGarageDatabase.getInstance();
+    DiyGarageDatabase.setApplicationContext(this);
+    DiyGarageDatabase database = DiyGarageDatabase.getInstance();
     new Thread(new Runnable() {
       @Override
       public void run() {

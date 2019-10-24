@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/service_list"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:layout_marginLeft="16dp"
-  android:layout_marginRight="16dp"
-  android:name="com.khizarms.diygarage.controller.ServiceListFragment"
-  app:layoutManager="LinearLayoutManager"
-  tools:context=".controller.ServiceListActivity"
-  tools:listitem="@layout/service_list_content"/>
+  android:orientation="vertical"
+  tools:context=".controller.ServiceListActivity">
+
+  <Spinner
+    android:id="@+id/car_selector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/service_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:name="com.khizarms.diygarage.controller.ServiceListFragment"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    tools:listitem="@layout/service_list_content"/>
+
+</LinearLayout>

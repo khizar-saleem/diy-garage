@@ -3,6 +3,9 @@ package com.khizarms.diygarage.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
@@ -21,6 +24,7 @@ import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.controller.dummy.DummyContent;
 
 import com.khizarms.diygarage.model.entity.Car;
+import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 import java.util.List;
 
@@ -35,7 +39,7 @@ public class ServiceListActivity extends AppCompatActivity {
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
    */
-  private boolean mTwoPane;
+  private boolean twoPane;
   private ServiceListViewModel viewModel;
 
   @Override
@@ -44,11 +48,24 @@ public class ServiceListActivity extends AppCompatActivity {
     setContentView(R.layout.activity_service_list);
 
     Spinner spinner = findViewById(R.id.car_selector);
-
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
     viewModel.getCars().observe(this, (cars) -> {
       ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
       spinner.setAdapter(adapter);
+    });
+    spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        long carId = ((Car) spinner.getItemAtPosition(position)).getId();
+        viewModel.getCarId().setValue(carId);
+
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> adapterView) {
+
+        viewModel.getCarId().setValue(null);
+      }
     });
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -69,86 +86,19 @@ public class ServiceListActivity extends AppCompatActivity {
       // large-screen layouts (res/values-w900dp).
       // If this view is present, then the
       // activity should be in two-pane mode.
-      mTwoPane = true;
+      twoPane = true;
     }
 
-    View recyclerView = findViewById(R.id.service_list);
-    assert recyclerView != null;
-    setupRecyclerView((RecyclerView) recyclerView);
+    RecyclerView recyclerView = findViewById(R.id.service_list);
+    setupRecyclerView(recyclerView);
   }
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+    viewModel.getServices().observe(this, (services) -> {
+      ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, (v) -> {/* TODO Populate recyclerview of actions*/}, services);
+      recyclerView.setAdapter(adapter);
+    });
   }
 
-  public static class SimpleItemRecyclerViewAdapter
-      extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-
-    private final ServiceListActivity mParentActivity;
-    private final List<DummyContent.DummyItem> mValues;
-    private final boolean mTwoPane;
-    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
-        if (mTwoPane) {
-          Bundle arguments = new Bundle();
-          arguments.putString(ServiceDetailFragment.ARG_ITEM_ID, item.id);
-          ServiceDetailFragment fragment = new ServiceDetailFragment();
-          fragment.setArguments(arguments);
-          mParentActivity.getSupportFragmentManager().beginTransaction()
-              .replace(R.id.service_detail_container, fragment)
-              .commit();
-        } else {
-          Context context = view.getContext();
-          Intent intent = new Intent(context, ServiceDetailActivity.class);
-          intent.putExtra(ServiceDetailFragment.ARG_ITEM_ID, item.id);
-
-          context.startActivity(intent);
-        }
-      }
-    };
-
-    SimpleItemRecyclerViewAdapter(ServiceListActivity parent,
-        List<DummyContent.DummyItem> items,
-        boolean twoPane) {
-      mValues = items;
-      mParentActivity = parent;
-      mTwoPane = twoPane;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      View view = LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.service_list_content, parent, false);
-      return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-      holder.mIdView.setText(mValues.get(position).id);
-      holder.mContentView.setText(mValues.get(position).content);
-
-      holder.itemView.setTag(mValues.get(position));
-      holder.itemView.setOnClickListener(mOnClickListener);
-    }
-
-    @Override
-    public int getItemCount() {
-      return mValues.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-      final TextView mIdView;
-      final TextView mContentView;
-
-      ViewHolder(View view) {
-        super(view);
-        mIdView = (TextView) view.findViewById(R.id.id_text);
-        mContentView = (TextView) view.findViewById(R.id.content);
-      }
-    }
-  }
 
 }

@@ -5,16 +5,19 @@
   android:orientation="horizontal">
 
   <TextView
-    android:id="@+id/id_text"
-    android:layout_width="wrap_content"
+    android:id="@+id/service_date"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_weight="1"
     android:layout_margin="@dimen/text_margin"
     android:textAppearance="?attr/textAppearanceListItem"/>
 
   <TextView
-    android:id="@+id/content"
-    android:layout_width="wrap_content"
+    android:id="@+id/service_mileage"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:layout_weight="1"
     android:layout_margin="@dimen/text_margin"
     android:textAppearance="?attr/textAppearanceListItem"/>
+
 </LinearLayout>

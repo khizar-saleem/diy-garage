@@ -9,6 +9,7 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.model.pojo.ServiceWithActions;
+import java.util.List;
 
 @Dao
 public interface ServiceDao {
@@ -19,6 +20,9 @@ public interface ServiceDao {
   @Transaction
   @Query("SELECT * FROM Service WHERE service_id = :serviceId")
   LiveData<ServiceWithActions> getActions(long serviceId);
+
+  @Query("SELECT * FROM Service WHERE car_id = :carId")
+  LiveData<List<Service>> getServicesByCar(Long carId);
 
   @Update
   int update(Service... services);

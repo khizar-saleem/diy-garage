@@ -1,6 +1,6 @@
 # Welcome!
 
-<br/><br/>
+<br/>
 
 ## Description
 

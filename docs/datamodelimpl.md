@@ -1,4 +1,5 @@
 ## Data Model Implementation 
+<br></br>
 
 ### Entity Classes
 

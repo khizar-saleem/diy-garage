@@ -3,6 +3,8 @@ package com.khizarms.diygarage.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -24,6 +26,7 @@ import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.controller.dummy.DummyContent;
 
 import com.khizarms.diygarage.model.entity.Car;
+import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 import java.util.List;
@@ -41,6 +44,7 @@ public class ServiceListActivity extends AppCompatActivity {
    */
   private boolean twoPane;
   private ServiceListViewModel viewModel;
+  private GoogleSignInService signInService = GoogleSignInService.getInstance();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +97,44 @@ public class ServiceListActivity extends AppCompatActivity {
     setupRecyclerView(recyclerView);
   }
 
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    return true;
+  }
+
+
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     viewModel.getServices().observe(this, (services) -> {
       ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, (v) -> {/* TODO Populate recyclerview of actions*/}, services);
       recyclerView.setAdapter(adapter);
     });
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    boolean handled = true;
+    switch (item.getItemId()) {
+      case R.id.action_settings:
+        break;
+      case R.id.sign_out:
+        signOut();
+        break;
+      default:
+        handled = super.onOptionsItemSelected(item);
+    }
+    return handled;
+  }
+
+
+
+  private void signOut() {
+    signInService.signOut()
+        .addOnCompleteListener((task) -> {
+          Intent intent = new Intent(this, LoginActivity.class);
+          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+          startActivity(intent);
+        });
   }
 
 

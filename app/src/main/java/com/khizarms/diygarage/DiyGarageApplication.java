@@ -3,6 +3,7 @@ package com.khizarms.diygarage;
 import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.khizarms.diygarage.service.DiyGarageDatabase;
+import com.khizarms.diygarage.service.GoogleSignInService;
 
 public class DiyGarageApplication extends Application {
 
@@ -18,6 +19,7 @@ public class DiyGarageApplication extends Application {
         database.getActionDao().delete();
       }
     }).start();
+    GoogleSignInService.setApplicationContext(this);
   }
 
 }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.khizarms.diygarage"
         minSdkVersion 21
@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://www.fueleconomy.gov/ws/rest/vehicle/menu/"'
+        buildConfigField "String", "CLIENT_ID", '"174202725320-im3jq7lj50eguqvcl6he1c46cv6piiva.apps.googleusercontent.com"'
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -46,7 +47,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
@@ -56,6 +57,7 @@ dependencies {
 
     def retrofit_version = "2.6.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.retrofit2:converter-simplexml:2.5.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 

@@ -3,4 +3,7 @@
   <string name="title_service_list">Services</string>
   <string name="title_service_detail">Service Detail</string>
   <string name="mileage_format">%,d</string>
+  <string name="login_failure_message">Unable to log in with Google Sign In</string>
+  <string name="action_settings">Settings</string>
+  <string name="sign_out">Sign out</string>
 </resources>

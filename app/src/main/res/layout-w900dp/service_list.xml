@@ -27,7 +27,22 @@
     android:orientation="horizontal"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/service_detail_container"/>
+    app:layout_constraintEnd_toStartOf="@id/service_detail_container"
+    app:layout_constraintHorizontal_weight="3"/>
+
+  <Button
+    android:id="@+id/add_car"
+    android:text="@string/add_car"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/service_list"
+    app:layout_constraintStart_toEndOf="@id/car_selector"
+    app:layout_constraintEnd_toStartOf="@id/service_detail_container"
+    app:layout_constraintHorizontal_weight="1"
+    />
+
 
   <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

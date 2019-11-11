@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.controller.dummy.DummyContent;
 
 import com.khizarms.diygarage.model.entity.Car;
+import com.khizarms.diygarage.service.FuelEconomyService;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
@@ -45,6 +48,7 @@ public class ServiceListActivity extends AppCompatActivity {
   private boolean twoPane;
   private ServiceListViewModel viewModel;
   private GoogleSignInService signInService = GoogleSignInService.getInstance();
+  private Button addCarBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,13 @@ public class ServiceListActivity extends AppCompatActivity {
     setContentView(R.layout.activity_service_list);
 
     Spinner spinner = findViewById(R.id.car_selector);
+    addCarBtn = findViewById(R.id.add_car);
+    addCarBtn.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        
+      }
+    });
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
     viewModel.getCars().observe(this, (cars) -> {
       ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);

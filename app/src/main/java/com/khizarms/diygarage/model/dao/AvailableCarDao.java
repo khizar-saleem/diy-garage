@@ -7,31 +7,29 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
+import com.khizarms.diygarage.model.entity.AvailableCar;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.pojo.CarWithServices;
 import java.util.Collection;
 import java.util.List;
 
 @Dao
-public interface CarDao {
+public interface AvailableCarDao {
 
   @Insert
-  long insert(Car car);
+  long insert(AvailableCar car);
 
   @Insert
-  List<Long> insert(Collection<Car> cars);
+  List<Long> insert(Collection<AvailableCar> cars);
 
-  @Query("SELECT * FROM Car ORDER BY make, model, year")
-  LiveData<List<Car>> getAll();
+  @Query("SELECT * FROM AvailableCar ORDER BY make, model, year")
+  LiveData<List<AvailableCar>> getAll();
 
-  @Transaction
-  @Query("SELECT * FROM Car WHERE car_id = :carId")
-  LiveData<CarWithServices> getDetails(long carId);
 
   @Update
-  int update(Car... cars);
+  int update(AvailableCar... cars);
 
   @Delete
-  int delete(Car... cars);
+  int delete(AvailableCar... cars);
 
 }

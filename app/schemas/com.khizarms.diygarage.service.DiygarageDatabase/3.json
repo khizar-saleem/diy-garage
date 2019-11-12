@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "988956900eb83cb0c65f3d4a9ca41f30",
+    "identityHash": "61f40a949da0339c96444f558de5d2d6",
     "entities": [
       {
         "tableName": "Action",
@@ -52,7 +52,7 @@
             "columnNames": [
               "service_id"
             ],
-            "createSql": "CREATE  INDEX `index_Action_service_id` ON `${TABLE_NAME}` (`service_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Action_service_id` ON `${TABLE_NAME}` (`service_id`)"
           }
         ],
         "foreignKeys": [
@@ -111,7 +111,7 @@
             "columnNames": [
               "date"
             ],
-            "createSql": "CREATE  INDEX `index_Service_date` ON `${TABLE_NAME}` (`date`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Service_date` ON `${TABLE_NAME}` (`date`)"
           },
           {
             "name": "index_Service_car_id",
@@ -119,7 +119,7 @@
             "columnNames": [
               "car_id"
             ],
-            "createSql": "CREATE  INDEX `index_Service_car_id` ON `${TABLE_NAME}` (`car_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Service_car_id` ON `${TABLE_NAME}` (`car_id`)"
           }
         ],
         "foreignKeys": [
@@ -184,7 +184,7 @@
             "columnNames": [
               "make"
             ],
-            "createSql": "CREATE  INDEX `index_Car_make` ON `${TABLE_NAME}` (`make`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Car_make` ON `${TABLE_NAME}` (`make`)"
           },
           {
             "name": "index_Car_model",
@@ -192,7 +192,7 @@
             "columnNames": [
               "model"
             ],
-            "createSql": "CREATE  INDEX `index_Car_model` ON `${TABLE_NAME}` (`model`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Car_model` ON `${TABLE_NAME}` (`model`)"
           },
           {
             "name": "index_Car_year",
@@ -200,7 +200,7 @@
             "columnNames": [
               "year"
             ],
-            "createSql": "CREATE  INDEX `index_Car_year` ON `${TABLE_NAME}` (`year`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Car_year` ON `${TABLE_NAME}` (`year`)"
           },
           {
             "name": "index_Car_acquisition",
@@ -208,7 +208,70 @@
             "columnNames": [
               "acquisition"
             ],
-            "createSql": "CREATE  INDEX `index_Car_acquisition` ON `${TABLE_NAME}` (`acquisition`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Car_acquisition` ON `${TABLE_NAME}` (`acquisition`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AvailableCar",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`car_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `make` TEXT NOT NULL, `model` TEXT NOT NULL, `year` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "car_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "make",
+            "columnName": "make",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "model",
+            "columnName": "model",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "car_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_AvailableCar_make",
+            "unique": false,
+            "columnNames": [
+              "make"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AvailableCar_make` ON `${TABLE_NAME}` (`make`)"
+          },
+          {
+            "name": "index_AvailableCar_model",
+            "unique": false,
+            "columnNames": [
+              "model"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AvailableCar_model` ON `${TABLE_NAME}` (`model`)"
+          },
+          {
+            "name": "index_AvailableCar_year",
+            "unique": false,
+            "columnNames": [
+              "year"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AvailableCar_year` ON `${TABLE_NAME}` (`year`)"
           }
         ],
         "foreignKeys": []
@@ -217,7 +280,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '988956900eb83cb0c65f3d4a9ca41f30')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '61f40a949da0339c96444f558de5d2d6')"
     ]
   }
 }

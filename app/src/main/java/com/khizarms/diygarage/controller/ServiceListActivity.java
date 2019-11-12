@@ -1,38 +1,27 @@
 package com.khizarms.diygarage.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View.OnClickListener;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import com.khizarms.diygarage.R;
-
-import com.khizarms.diygarage.controller.dummy.DummyContent;
-
 import com.khizarms.diygarage.model.entity.Car;
-import com.khizarms.diygarage.service.FuelEconomyService;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
-import java.util.List;
 
 /**
  * An activity representing a list of Services. This activity has different presentations for
@@ -57,11 +46,8 @@ public class ServiceListActivity extends AppCompatActivity {
 
     Spinner spinner = findViewById(R.id.car_selector);
     addCarBtn = findViewById(R.id.add_car);
-    addCarBtn.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        
-      }
+    addCarBtn.setOnClickListener(view -> {
+
     });
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
     viewModel.getCars().observe(this, (cars) -> {
@@ -88,13 +74,8 @@ public class ServiceListActivity extends AppCompatActivity {
     toolbar.setTitle(getTitle());
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
-      }
-    });
+    fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        .setAction("Action", null).show());
 
     if (findViewById(R.id.service_detail_container) != null) {
       // The detail container view will be present only in the
@@ -117,7 +98,9 @@ public class ServiceListActivity extends AppCompatActivity {
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     viewModel.getServices().observe(this, (services) -> {
-      ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, (v) -> {/* TODO Populate recyclerview of actions*/}, services);
+      ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, (v) -> {
+        /* TODO Populate recycler view with actions */},
+          services);
       recyclerView.setAdapter(adapter);
     });
   }

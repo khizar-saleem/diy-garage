@@ -5,7 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,10 +27,11 @@ public class EditCarFragment extends DialogFragment {
 
   private Car car;
   private EditText carYear;
-  private SearchView carMake;
+  private Spinner carMake;
   private SearchView carModel;
   private EditCarViewModel viewModel;
   private View dialogView;
+  private TextView make;
 
   public static EditCarFragment newInstance(Car car) {
     EditCarFragment fragment = new EditCarFragment();
@@ -49,18 +55,32 @@ public class EditCarFragment extends DialogFragment {
   public AlertDialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     dialogView = getActivity().getLayoutInflater().inflate(R.layout.fragment_newcar, null);
     carYear = dialogView.findViewById(R.id.car_year);
+    make = dialogView.findViewById(R.id.make);
     carMake = dialogView.findViewById(R.id.make_search);
+    carMake.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String selection = (String) adapterView.getItemAtPosition(i);
+        make.setText(selection);
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> adapterView) {
+
+      }
+    });
     carModel = dialogView.findViewById(R.id.model_search);
-    carMake.setOnQueryTextListener(new OnQueryTextListener() {
+
+    carModel.setOnQueryTextListener(new OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        viewModel.setMakePattern(query);
+        viewModel.setModelPattern(query);
         return false;
       }
 
       @Override
       public boolean onQueryTextChange(String newText) {
-        viewModel.setMakePattern(newText);
+        viewModel.setModelPattern(newText);
         return false;
       }
     });
@@ -69,7 +89,7 @@ public class EditCarFragment extends DialogFragment {
       car = new Car();
     } else {
       carYear.setText(Integer.toString(car.getYear()));
-      carMake.setQuery(car.getMake(), false);
+      make.setText(car.getMake());
       carModel.setQuery(car.getModel(), false);
     }
     return new Builder(getContext())
@@ -86,16 +106,21 @@ public class EditCarFragment extends DialogFragment {
     viewModel = ViewModelProviders.of(this).get(EditCarViewModel.class);
     viewModel.getMakes().observe(this, (makes) -> {
       Log.d(getClass().getSimpleName(), makes.toString());
+      ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, makes);
+      carMake.setAdapter(adapter);
+      int position = makes.indexOf(make.getText().toString());
+      carMake.setSelection(position);
+    });
+    viewModel.getModels().observe(this, (models) -> {
+      Log.d(getClass().getSimpleName(), models.toString());
     });
   }
 
   private void saveCar() {
-//    availableCar.setYear(carYear.getInputType());
     int year = Integer.parseInt(carYear.getText().toString());
-    String make = carMake.getQuery().toString();
     String model = carModel.getQuery().toString();
     car.setYear(year);
-    car.setMake(make);
+    car.setMake(make.getText().toString());
     car.setModel(model);
     ((CarSaver) getActivity()).save(car);
   }

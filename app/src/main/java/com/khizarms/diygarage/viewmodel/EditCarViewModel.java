@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EditCarViewModel extends AndroidViewModel {
 
-  private MutableLiveData<String> makePattern = new MutableLiveData<>();
+  private MutableLiveData<String> make = new MutableLiveData<>();
   private MutableLiveData<String> modelPattern = new MutableLiveData<>();
   private LiveData<List<String>> makes;
   private LiveData<List<String>> models;
@@ -22,23 +22,32 @@ public class EditCarViewModel extends AndroidViewModel {
 
 
   public EditCarViewModel(@NonNull Application application) {
-
     super(application);
     database = DiyGarageDatabase.getInstance();
-    makes = Transformations.switchMap(makePattern, (pattern) -> {
+    models = Transformations.switchMap(modelPattern, (pattern) -> {
       if (pattern.length() < 2) {
         return new MutableLiveData<>(Collections.EMPTY_LIST);
       } else {
-        return database.getAvailableCarDao().getMakes("%" + pattern + "%");
+        return database.getAvailableCarDao().getModels();
       }
     });
   }
 
   public LiveData<List<String>> getMakes() {
-    return makes;
+    return database.getAvailableCarDao().getMakes();
   }
 
-  public void setMakePattern(String makePattern) {
-    this.makePattern.setValue(makePattern);
+  public void setMake(String make) {
+    this.make.setValue(make);
   }
+
+  public LiveData<List<String>> getModels() {
+    return models;
+  }
+
+  public void setModelPattern(String modelPattern) {
+    this.modelPattern.setValue(modelPattern);
+  }
+
+  // TODO Define a custom mediator live data
 }

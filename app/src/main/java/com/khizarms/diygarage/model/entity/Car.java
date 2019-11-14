@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Car {
+public class Car implements Serializable {
+
+  private static final long serialVersionUID = -5331911484426555529L;
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "car_id")

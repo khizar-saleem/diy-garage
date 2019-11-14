@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
+import com.khizarms.diygarage.model.dao.CarDao;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.DiyGarageDatabase;
@@ -16,6 +17,7 @@ public class ServiceListViewModel extends AndroidViewModel {
   private final DiyGarageDatabase database;
   private MutableLiveData<Long> carId;
   private LiveData<List<Service>> services;
+
 
   public ServiceListViewModel(@NonNull Application application) {
     super(application);
@@ -34,5 +36,17 @@ public class ServiceListViewModel extends AndroidViewModel {
 
   public LiveData<List<Service>> getServices() {
     return services;
+  }
+
+  public void saveCar(Car car) {
+    CarDao dao = database.getCarDao();
+    new Thread(() -> {
+      if (car.getId() == 0) {
+        dao.insert(car);
+      } else {
+        dao.update(car);
+      }
+    }).start();
+
   }
 }

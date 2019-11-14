@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.khizarms.diygarage.R;
+import com.khizarms.diygarage.controller.EditCarFragment.CarSaver;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
@@ -29,7 +30,7 @@ import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
  * touched, lead to a {@link ServiceDetailActivity} representing item details. On tablets, the
  * activity presents the list of items and item details side-by-side using two vertical panes.
  */
-public class ServiceListActivity extends AppCompatActivity {
+public class ServiceListActivity extends AppCompatActivity implements CarSaver {
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
@@ -46,9 +47,7 @@ public class ServiceListActivity extends AppCompatActivity {
 
     Spinner spinner = findViewById(R.id.car_selector);
     addCarBtn = findViewById(R.id.add_car);
-    addCarBtn.setOnClickListener(view -> {
-
-    });
+    addCarBtn.setOnClickListener(view -> newCar(null));
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
     viewModel.getCars().observe(this, (cars) -> {
       ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
@@ -121,7 +120,6 @@ public class ServiceListActivity extends AppCompatActivity {
   }
 
 
-
   private void signOut() {
     signInService.signOut()
         .addOnCompleteListener((task) -> {
@@ -131,5 +129,13 @@ public class ServiceListActivity extends AppCompatActivity {
         });
   }
 
+  private void newCar(Car car) {
+    EditCarFragment fragment = EditCarFragment.newInstance(car);
+    fragment.show(getSupportFragmentManager(), fragment.getClass().getSimpleName());
+  }
 
+  @Override
+  public void save(Car car) {
+    viewModel.saveCar(car);
+  }
 }

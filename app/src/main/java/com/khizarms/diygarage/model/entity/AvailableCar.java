@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class AvailableCar {
   @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name = "car_id")
+  @ColumnInfo(name = "available_car_id")
   private long id;
 
   @ColumnInfo(index = true)

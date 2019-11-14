@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "61f40a949da0339c96444f558de5d2d6",
+    "identityHash": "c29a42cfff0973545abb6cac1d91b6c2",
     "entities": [
       {
         "tableName": "Action",
@@ -215,11 +215,11 @@
       },
       {
         "tableName": "AvailableCar",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`car_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `make` TEXT NOT NULL, `model` TEXT NOT NULL, `year` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`available_car_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `make` TEXT NOT NULL, `model` TEXT NOT NULL, `year` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "car_id",
+            "columnName": "available_car_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -244,7 +244,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "car_id"
+            "available_car_id"
           ],
           "autoGenerate": true
         },
@@ -280,7 +280,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '61f40a949da0339c96444f558de5d2d6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c29a42cfff0973545abb6cac1d91b6c2')"
     ]
   }
 }

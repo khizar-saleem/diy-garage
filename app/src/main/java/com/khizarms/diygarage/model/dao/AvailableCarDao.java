@@ -5,11 +5,8 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 import com.khizarms.diygarage.model.entity.AvailableCar;
-import com.khizarms.diygarage.model.entity.Car;
-import com.khizarms.diygarage.model.pojo.CarWithServices;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,6 +22,17 @@ public interface AvailableCarDao {
   @Query("SELECT * FROM AvailableCar ORDER BY make, model, year")
   LiveData<List<AvailableCar>> getAll();
 
+  @Query("SELECT DISTINCT make FROM AvailableCar ORDER BY make")
+  LiveData<List<String>> getMakes();
+
+  @Query("SELECT DISTINCT model FROM AvailableCar ORDER BY model")
+  LiveData<List<String>> getModels();
+
+  @Query("SELECT DISTINCT make FROM AvailableCar WHERE make LIKE :pattern ORDER BY make")
+  LiveData<List<String>> getMakes(String pattern);
+
+  @Query("SELECT DISTINCT model FROM AvailableCar WHERE model LIKE :pattern ORDER BY model")
+  LiveData<List<String>> getModels(String pattern);
 
   @Update
   int update(AvailableCar... cars);

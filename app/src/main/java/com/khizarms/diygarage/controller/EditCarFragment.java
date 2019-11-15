@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
@@ -32,6 +34,7 @@ public class EditCarFragment extends DialogFragment {
   private EditCarViewModel viewModel;
   private View dialogView;
   private TextView make;
+  private ListView modelList;
 
   public static EditCarFragment newInstance(Car car) {
     EditCarFragment fragment = new EditCarFragment();
@@ -70,7 +73,6 @@ public class EditCarFragment extends DialogFragment {
       }
     });
     carModel = dialogView.findViewById(R.id.model_search);
-
     carModel.setOnQueryTextListener(new OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
@@ -114,6 +116,7 @@ public class EditCarFragment extends DialogFragment {
     viewModel.getModels().observe(this, (models) -> {
       Log.d(getClass().getSimpleName(), models.toString());
     });
+
   }
 
   private void saveCar() {

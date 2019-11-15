@@ -53,9 +53,11 @@
     app:queryHint="Model"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/make_search"
+    app:searchIcon="@null"
     />
 
   <ListView
+    android:id="@+id/model_list"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:minHeight="16dp"

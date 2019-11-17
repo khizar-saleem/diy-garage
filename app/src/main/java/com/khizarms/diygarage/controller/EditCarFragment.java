@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -60,11 +61,17 @@ public class EditCarFragment extends DialogFragment {
     carYear = dialogView.findViewById(R.id.car_year);
     make = dialogView.findViewById(R.id.make);
     carMake = dialogView.findViewById(R.id.make_search);
+    modelList = dialogView.findViewById(R.id.model_list);
+    modelList.setOnItemClickListener((adapterView, view, position, l) -> {
+      String selected = (String) adapterView.getItemAtPosition(position);
+      carModel.setQuery(selected, true);
+    });
     carMake.setOnItemSelectedListener(new OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String selection = (String) adapterView.getItemAtPosition(i);
         make.setText(selection);
+        viewModel.setMake(selection);
       }
 
       @Override
@@ -114,7 +121,9 @@ public class EditCarFragment extends DialogFragment {
       carMake.setSelection(position);
     });
     viewModel.getModels().observe(this, (models) -> {
-      Log.d(getClass().getSimpleName(), models.toString());
+      // Populate an array adapter with models and attach adapter to modeList
+      ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, models);
+      modelList.setAdapter(adapter);
     });
 
   }

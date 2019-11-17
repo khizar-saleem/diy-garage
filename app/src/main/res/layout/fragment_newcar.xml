@@ -59,8 +59,8 @@
   <ListView
     android:id="@+id/model_list"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:minHeight="16dp"
+    android:layout_height="100dp"
+    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/model_search"
     app:layout_constraintBottom_toBottomOf="parent"/>
 

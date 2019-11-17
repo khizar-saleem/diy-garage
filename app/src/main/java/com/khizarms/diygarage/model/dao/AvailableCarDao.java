@@ -32,7 +32,7 @@ public interface AvailableCarDao {
   LiveData<List<String>> getMakes(String pattern);
 
   @Query("SELECT DISTINCT model FROM AvailableCar WHERE model LIKE :pattern AND make = :make ORDER BY model")
-  LiveData<List<String>> getModels(String pattern, String make);
+  LiveData<List<String>> getModels(String make, String pattern);
 
   @Update
   int update(AvailableCar... cars);

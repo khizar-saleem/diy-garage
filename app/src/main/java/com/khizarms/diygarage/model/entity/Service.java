@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(
@@ -17,7 +18,9 @@ import java.util.Date;
         )
     }
 )
-public class Service {
+public class Service implements Serializable {
+
+  private static final long serialVersionUID = 2883582909279887901L;
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "service_id")

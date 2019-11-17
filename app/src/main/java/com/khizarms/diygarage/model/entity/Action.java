@@ -22,12 +22,12 @@ public class Action {
   @ColumnInfo(name = "action_id")
   private long id;
 
+  @ColumnInfo(name = "service_id", index = true)
+  private long serviceId;
+
   private String summary;
 
   private String description;
-
-  @ColumnInfo(name = "service_id", index = true)
-  private long serviceId;
 
   @NonNull
   private ServiceType serviceType;

@@ -19,7 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.controller.EditCarFragment.CarSaver;
+import com.khizarms.diygarage.controller.EditServiceFragment.ServiceSaver;
 import com.khizarms.diygarage.model.entity.Car;
+import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
@@ -30,7 +32,7 @@ import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
  * touched, lead to a {@link ServiceDetailActivity} representing item details. On tablets, the
  * activity presents the list of items and item details side-by-side using two vertical panes.
  */
-public class ServiceListActivity extends AppCompatActivity implements CarSaver {
+public class ServiceListActivity extends AppCompatActivity implements CarSaver, ServiceSaver {
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
@@ -39,6 +41,7 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver {
   private ServiceListViewModel viewModel;
   private GoogleSignInService signInService = GoogleSignInService.getInstance();
   private Button addCarBtn;
+  private FloatingActionButton addServiceBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver {
     setContentView(R.layout.activity_service_list);
 
     Spinner spinner = findViewById(R.id.car_selector);
+    addServiceBtn = findViewById(R.id.fab);
+    addServiceBtn.setOnClickListener(view -> newService(null));
     addCarBtn = findViewById(R.id.add_car);
     addCarBtn.setOnClickListener(view -> newCar(null));
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
@@ -66,15 +71,18 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver {
 
         viewModel.getCarId().setValue(null);
       }
+
+
     });
+
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     toolbar.setTitle(getTitle());
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show());
+//    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//    fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//        .setAction("Action", null).show());
 
     if (findViewById(R.id.service_detail_container) != null) {
       // The detail container view will be present only in the
@@ -134,8 +142,23 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver {
     fragment.show(getSupportFragmentManager(), fragment.getClass().getSimpleName());
   }
 
+  private void newService(Service service) {
+    EditServiceFragment fragment = EditServiceFragment.newInstance(service);
+    fragment.show(getSupportFragmentManager(), fragment.getClass().getSimpleName());
+  }
+
   @Override
   public void save(Car car) {
     viewModel.saveCar(car);
+  }
+
+  @Override
+  public void delete(Car car) {
+    viewModel.deleteCar(car);
+  }
+
+  @Override
+  public void save(Service service) {
+    viewModel.addService(service);
   }
 }

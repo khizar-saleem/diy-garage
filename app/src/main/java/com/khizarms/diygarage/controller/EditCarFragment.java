@@ -137,10 +137,16 @@ public class EditCarFragment extends DialogFragment {
     ((CarSaver) getActivity()).save(car);
   }
 
+  private void deleteCar() {
+    ((CarSaver) getActivity()).delete(car);
+  }
+
+
   public interface CarSaver {
 
     void save(Car car);
 
+    void delete(Car car);
   }
 
 }

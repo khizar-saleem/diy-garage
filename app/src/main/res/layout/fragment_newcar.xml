@@ -31,7 +31,7 @@
     android:id="@+id/make"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:freezesText="true"
+    android:freezesText="false"
     app:layout_constraintStart_toStartOf="@id/make_search"
     app:layout_constraintTop_toTopOf="@id/make_search"
     android:visibility="invisible"/>

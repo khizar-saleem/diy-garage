@@ -8,4 +8,7 @@
   <string name="sign_out">Sign out</string>
   <string name="add_car">Add car</string>
   <string name="year">Year</string>
+  <string name="mileage">Mileage</string>
+  <string name="summary">Summary</string>
+  <string name="description">Description</string>
 </resources>

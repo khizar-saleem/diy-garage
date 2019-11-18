@@ -5,22 +5,34 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
+  <Spinner
+    android:id="@+id/service_type_spinner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
   <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/edit_service_layout"
+    android:id="@+id/action_text_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:hintEnabled="true"
-    app:hintAnimationEnabled="true"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
+    app:hintAnimationEnabled="true">
 
     <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/edit_mileage"
+      android:id="@+id/action_edit_summary"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:inputType="number"
-      android:hint="@string/mileage"
+      android:inputType="textMultiLine"
+      android:lines="3"
+      android:hint="@string/summary"
       />
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/action_edit_description"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:inputType="textMultiLine"
+      android:lines="6"
+      android:hint="@string/description"/>
 
   </com.google.android.material.textfield.TextInputLayout>
 

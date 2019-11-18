@@ -1,6 +1,5 @@
 package com.khizarms.diygarage.controller;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
-import androidx.room.ForeignKey;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 import com.khizarms.diygarage.R;
-import com.khizarms.diygarage.model.dao.ServiceDao;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
-import com.khizarms.diygarage.service.DiyGarageDatabase;
-import com.khizarms.diygarage.viewmodel.EditCarViewModel;
-import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 import java.util.Date;
 
 public class EditServiceFragment extends DialogFragment {
@@ -70,8 +62,6 @@ public class EditServiceFragment extends DialogFragment {
   private void saveService() {
     Date date = new Date();
     int mileage = Integer.parseInt(editMileage.getText().toString());
-
-
     service.setMileage(mileage);
     service.setDate(date);
     ((ServiceSaver) getActivity()).save(service);

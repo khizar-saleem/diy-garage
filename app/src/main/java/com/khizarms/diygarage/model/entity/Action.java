@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import java.io.Serializable;
 
 @Entity(
     foreignKeys = {
@@ -16,7 +17,9 @@ import androidx.room.PrimaryKey;
         )
     }
 )
-public class Action {
+public class Action implements Serializable {
+
+  private static final long serialVersionUID = -8522256879590658546L;
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "action_id")

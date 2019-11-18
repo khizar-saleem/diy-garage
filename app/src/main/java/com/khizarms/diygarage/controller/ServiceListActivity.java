@@ -1,22 +1,23 @@
 package com.khizarms.diygarage.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.controller.EditCarFragment.CarSaver;
 import com.khizarms.diygarage.controller.EditServiceFragment.ServiceSaver;
@@ -24,6 +25,7 @@ import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
+import com.khizarms.diygarage.viewmodel.EditActionViewModel;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 
 /**
@@ -40,8 +42,13 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
   private boolean twoPane;
   private ServiceListViewModel viewModel;
   private GoogleSignInService signInService = GoogleSignInService.getInstance();
-  private Button addCarBtn;
+  private MaterialButton addCarBtn;
+  private MaterialButton deleteCarBtn;
   private FloatingActionButton addServiceBtn;
+  private Car car;
+  private Context context = this;
+  private EditActionViewModel actionListViewModel;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +112,13 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     viewModel.getServices().observe(this, (services) -> {
-      ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, (v) -> {
-        /* TODO Populate recycler view with actions */},
+      ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          /* TODO Populate recycler view with actions */
+
+        }
+      },
           services);
       recyclerView.setAdapter(adapter);
     });

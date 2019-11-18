@@ -1,11 +1,13 @@
 package com.khizarms.diygarage.view;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.khizarms.diygarage.R;
@@ -60,6 +62,12 @@ public class ServiceRecyclerAdapter extends RecyclerView.Adapter<ServiceHolder>{
 
     private void bind(Service service) {
       view.setTag(service);
+      view.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Toast.makeText(context, service.getDate().toString(), Toast.LENGTH_LONG).show();
+        }
+      });
       serviceDate.setText(service.getDate().toString());
       serviceMileage.setText(context.getString(R.string.mileage_format, service.getMileage()));
     }

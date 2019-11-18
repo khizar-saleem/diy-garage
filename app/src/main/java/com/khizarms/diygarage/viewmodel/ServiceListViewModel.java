@@ -41,7 +41,6 @@ public class ServiceListViewModel extends AndroidViewModel {
 
   public void addService(Service service) {
     ServiceDao dao = database.getServiceDao();
-
     new Thread(() -> {
       if (service.getCarId() == 0 && service.getId() == 0) {
         service.setCarId(getCarId().getValue());

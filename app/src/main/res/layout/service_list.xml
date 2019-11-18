@@ -10,27 +10,38 @@
 
   <Spinner
     android:id="@+id/car_selector"
-    android:layout_width="0dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toStartOf="@id/add_car"
     app:layout_constraintBottom_toTopOf="@id/service_list"
-    app:layout_constraintHorizontal_weight="3"/>
+    app:layout_constraintHorizontal_weight="0.75"/>
 
-  <Button
+  <com.google.android.material.button.MaterialButton
     android:id="@+id/add_car"
-    android:text="@string/add_car"
+    app:icon="@drawable/ic_add"
+    android:textAppearance="@color/colorPrimaryDark"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintBottom_toTopOf="@id/service_list"
     app:layout_constraintStart_toEndOf="@id/car_selector"
-    app:layout_constraintHorizontal_weight="1"
+    app:layout_constraintHorizontal_weight="0.125"
     />
 
-
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/delete_car"
+    app:icon="@drawable/ic_delete"
+    android:textAppearance="@color/colorPrimaryDark"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toEndOf="@id/add_car"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/service_list"
+    app:layout_constraintHorizontal_weight="0.125"
+    />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/service_list"

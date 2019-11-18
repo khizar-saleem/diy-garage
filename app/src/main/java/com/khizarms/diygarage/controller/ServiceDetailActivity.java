@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
@@ -49,8 +48,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
       // Create the detail fragment and add it to the activity
       // using a fragment transaction.
       Bundle arguments = new Bundle();
-      arguments.putString(ServiceDetailFragment.ARG_ITEM_ID,
-          getIntent().getStringExtra(ServiceDetailFragment.ARG_ITEM_ID));
+      arguments.putString(ServiceDetailFragment.SERVICE_ID_KEY,
+          getIntent().getStringExtra(ServiceDetailFragment.SERVICE_ID_KEY));
       ServiceDetailFragment fragment = new ServiceDetailFragment();
       fragment.setArguments(arguments);
       getSupportFragmentManager().beginTransaction()

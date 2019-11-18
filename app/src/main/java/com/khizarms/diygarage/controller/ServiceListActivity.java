@@ -115,8 +115,13 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
       ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, new OnClickListener() {
         @Override
         public void onClick(View v) {
-          /* TODO Populate recycler view with actions */
-
+          Service service = (Service) v.getTag();
+          // TODO Open ServiceDetailActivity or ServiceDetailFragment
+          if (twoPane) {
+            // TODO Open ServiceDetailFragment, passing in service ID (service.getId()) in arguments.
+          } else {
+            // TODO Open ServiceDetailActivity, passin in service ID in Intent.
+          }
         }
       },
           services);

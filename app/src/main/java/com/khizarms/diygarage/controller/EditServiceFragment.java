@@ -50,6 +50,7 @@ public class EditServiceFragment extends DialogFragment {
       service = new Service();
     } else {
       editMileage.setText(Integer.toString(service.getMileage()));
+
     }
     return new Builder(getContext())
         .setTitle("Add Service")
@@ -68,6 +69,7 @@ public class EditServiceFragment extends DialogFragment {
   }
 
   public interface ServiceSaver {
+
     void save(Service service);
   }
 }

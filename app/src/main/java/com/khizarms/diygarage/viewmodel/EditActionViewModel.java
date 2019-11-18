@@ -1,6 +1,7 @@
 package com.khizarms.diygarage.viewmodel;
 
 import android.app.Application;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -16,6 +17,7 @@ public class EditActionViewModel extends AndroidViewModel {
 
   private final DiyGarageDatabase database;
   private MutableLiveData<Long> serviceId;
+  private MutableLiveData<Enum> serviceType;
   private LiveData<List<Action>> actions;
 
 
@@ -23,6 +25,7 @@ public class EditActionViewModel extends AndroidViewModel {
     super(application);
     database = DiyGarageDatabase.getInstance();
     serviceId = new MutableLiveData<>();
+    serviceType = new MutableLiveData<>();
     actions = Transformations.switchMap(serviceId, (id) -> database.getActionDao().getServiceActions(id));
   }
 
@@ -33,6 +36,14 @@ public class EditActionViewModel extends AndroidViewModel {
 
   public LiveData<List<Action>> getActions() {
     return actions;
+  }
+
+  public MutableLiveData<Enum> getServiceType() {
+    return serviceType;
+  }
+
+  public void setServiceType(MutableLiveData<Enum> serviceType) {
+    this.serviceType = serviceType;
   }
 
   public void addAction(Action action) {

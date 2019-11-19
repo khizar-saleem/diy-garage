@@ -3,6 +3,7 @@ package com.khizarms.diygarage.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.khizarms.diygarage.controller.EditServiceFragment.ServiceSaver;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.GoogleSignInService;
+import com.khizarms.diygarage.view.ActionRecyclerAdapter;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.EditActionViewModel;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
@@ -36,9 +38,7 @@ import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
  */
 public class ServiceListActivity extends AppCompatActivity implements CarSaver, ServiceSaver {
 
-  /**
-   * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
-   */
+
   private boolean twoPane;
   private ServiceListViewModel viewModel;
   private GoogleSignInService signInService = GoogleSignInService.getInstance();
@@ -48,6 +48,7 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
   private Car car;
   private Context context = this;
   private EditActionViewModel actionListViewModel;
+
 
 
   @Override
@@ -110,6 +111,7 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
   }
 
 
+  private ServiceListActivity serviceListActivity;
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     viewModel.getServices().observe(this, (services) -> {
       ServiceRecyclerAdapter adapter = new ServiceRecyclerAdapter(this, new OnClickListener() {
@@ -119,8 +121,21 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
           // TODO Open ServiceDetailActivity or ServiceDetailFragment
           if (twoPane) {
             // TODO Open ServiceDetailFragment, passing in service ID (service.getId()) in arguments.
+            Bundle arguments = new Bundle();
+            arguments.putString(ServiceDetailFragment.SERVICE_ID_KEY, String.valueOf(service.getId()));
+            ServiceDetailFragment fragment = new ServiceDetailFragment();
+            fragment.setArguments(arguments);
+            serviceListActivity.getSupportFragmentManager().beginTransaction()
+                .replace(R.id.service_detail_container, fragment)
+                .commit();
           } else {
             // TODO Open ServiceDetailActivity, passin in service ID in Intent.
+            Context context = v.getContext();
+            Intent intent = new Intent(context, ServiceDetailActivity.class);
+            Log.d("here","");
+//            intent.putExtra(ServiceDetailFragment.SERVICE_ID_KEY, service.getId());
+
+            context.startActivity(intent);
           }
         }
       },

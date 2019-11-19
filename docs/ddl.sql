@@ -40,4 +40,16 @@ CREATE INDEX `index_Car_year` ON `Car` (`year`);
 
 CREATE INDEX `index_Car_acquisition` ON `Car` (`acquisition`);
 
+CREATE TABLE IF NOT EXISTS `AvailableCar`
+(
+    `available_car_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    `make`             TEXT                              NOT NULL,
+    `model`            TEXT                              NOT NULL,
+    `year`             INTEGER                           NOT NULL
+);
 
+CREATE INDEX IF NOT EXISTS `index_AvailableCar_make` ON `AvailableCar` (`make`);
+
+CREATE INDEX IF NOT EXISTS `index_AvailableCar_model` ON `AvailableCar` (`model`);
+
+CREATE INDEX IF NOT EXISTS `index_AvailableCar_year` ON `AvailableCar` (`year`);

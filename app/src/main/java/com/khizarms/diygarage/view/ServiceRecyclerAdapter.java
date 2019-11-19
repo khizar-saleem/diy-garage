@@ -15,12 +15,23 @@ import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter.ServiceHolder;
 import java.util.List;
 
+/**
+ * Subclass of {@link RecyclerView.Adapter} that displays {@link Service} values, with the
+ * consumer providing listeners for click press events.
+ */
 public class ServiceRecyclerAdapter extends RecyclerView.Adapter<ServiceHolder>{
 
   private final Context context;
   private final List<Service> services;
   private final OnClickListener listener;
 
+  /**
+   * Initializes the adapter with the specified services and event listeners.
+   *
+   * @param context {@link Context} object used for obtaining a {@link LayoutInflater}.
+   * @param listener {@link OnClickListener} to handle click events.
+   * @param services {@link List List&lt;Service&gt;} to display in {@link RecyclerView}
+   */
   public ServiceRecyclerAdapter(Context context, View.OnClickListener listener, List<Service> services) {
     this.context = context;
     this.services = services;
@@ -45,6 +56,9 @@ public class ServiceRecyclerAdapter extends RecyclerView.Adapter<ServiceHolder>{
     return services.size();
   }
 
+  /**
+   * The type Service holder.
+   */
   class ServiceHolder extends RecyclerView.ViewHolder {
 
     private final View view;

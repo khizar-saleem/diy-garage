@@ -15,12 +15,22 @@ import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.view.ActionRecyclerAdapter.ActionHolder;
 import java.util.List;
 
+/**
+ * Subclass of {@link RecyclerView.Adapter} that displays {@link Action} values.
+ */
 public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionHolder> {
 
   private final Context context;
   private final List<Action> actions;
   private final OnClickListener listener;
 
+  /**
+   * Instantiates a new Action recycler adapter.
+   *
+   * @param context  the context
+   * @param listener the listener
+   * @param actions  the actions
+   */
   public ActionRecyclerAdapter(Context context, View.OnClickListener listener, List<Action> actions) {
     this.context = context;
     this.actions = actions;
@@ -46,6 +56,9 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionHolder> {
     return actions.size();
   }
 
+  /**
+   * The type Action holder.
+   */
   class ActionHolder extends RecyclerView.ViewHolder {
 
     private final View view;

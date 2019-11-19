@@ -15,13 +15,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProviders;
 import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.model.entity.Action;
 import com.khizarms.diygarage.model.entity.Action.ServiceType;
 import com.khizarms.diygarage.viewmodel.EditActionViewModel;
 
+/**
+ * Alert dialog user interface component presenting the properties (serviceType, summary and
+ * description) of an action for editing.
+ *
+ * @author Khizar Saleem
+ */
 public class EditActionFragment extends DialogFragment {
 
   private Action action;
@@ -32,6 +37,12 @@ public class EditActionFragment extends DialogFragment {
   private EditActionViewModel viewModel;
   private View dialogView;
 
+  /**
+   * New instance edit action fragment.
+   *
+   * @param action the action
+   * @return the edit action fragment
+   */
   public static EditActionFragment newInstance(Action action) {
     EditActionFragment fragment = new EditActionFragment();
     Bundle args = new Bundle();
@@ -61,8 +72,8 @@ public class EditActionFragment extends DialogFragment {
     serviceTypeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-         ServiceType selection = (ServiceType) adapterView.getItemAtPosition(i);
-         viewModel.setServiceType(selection);
+        ServiceType selection = (ServiceType) adapterView.getItemAtPosition(i);
+        viewModel.setServiceType(selection);
       }
 
       @Override
@@ -101,7 +112,16 @@ public class EditActionFragment extends DialogFragment {
     viewModel.getServiceType().observe(this, (type) -> serviceTypeSpinner.setSelection(type.ordinal()));
   }
 
+  /**
+   * The interface Action saver.
+   */
   public interface ActionSaver {
+
+    /**
+     * Save.
+     *
+     * @param action the action
+     */
     void save(Action action);
   }
 }

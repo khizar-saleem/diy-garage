@@ -25,7 +25,7 @@ import com.khizarms.diygarage.service.GoogleSignInService;
 
 /**
  * Simple {@link AppCompatActivity} subclass, displaying a button for&mdash;and transferring control
- * to&mdash;Google Sign In, switching to {@link MainActivity} on a successful login.
+ * to&mdash;Google Sign In, switching to {@link ServiceListActivity} on a successful login.
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
   private GoogleSignInService service;
 
   /**
-   * Attempts to refresh most recently logged-in account, switching to {@link MainActivity} if
+   * Attempts to refresh most recently logged-in account, switching to {@link ServiceListActivity} if
    * successful, and displaying Google Sign In button otherwise.
    *
    * @param savedInstanceState previously saved state data (ignored).

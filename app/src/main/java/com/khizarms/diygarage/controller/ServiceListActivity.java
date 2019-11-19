@@ -1,9 +1,7 @@
 package com.khizarms.diygarage.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.khizarms.diygarage.R;
+import com.khizarms.diygarage.controller.EditActionFragment.ActionSaver;
 import com.khizarms.diygarage.controller.EditCarFragment.CarSaver;
 import com.khizarms.diygarage.controller.EditServiceFragment.ServiceSaver;
+import com.khizarms.diygarage.model.entity.Action;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.GoogleSignInService;
-import com.khizarms.diygarage.view.ActionRecyclerAdapter;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
-import com.khizarms.diygarage.viewmodel.EditActionViewModel;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 
 /**
@@ -36,7 +34,8 @@ import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
  * touched, lead to a {@link ServiceDetailActivity} representing item details. On tablets, the
  * activity presents the list of items and item details side-by-side using two vertical panes.
  */
-public class ServiceListActivity extends AppCompatActivity implements CarSaver, ServiceSaver {
+public class ServiceListActivity extends AppCompatActivity implements CarSaver, ServiceSaver,
+    ActionSaver {
 
 
   private boolean twoPane;
@@ -114,6 +113,7 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
         @Override
         public void onClick(View v) {
           Service service = (Service) v.getTag();
+          viewModel.setServiceId(service.getId());
           // TODO Open ServiceDetailActivity or ServiceDetailFragment
           if (twoPane) {
             // TODO Open ServiceDetailFragment, passing in service ID (service.getId()) in arguments.
@@ -186,4 +186,10 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
   public void save(Service service) {
     viewModel.addService(service);
   }
+
+  @Override
+  public void save(Action action) {
+    viewModel.saveAction(action);
+  }
+
 }

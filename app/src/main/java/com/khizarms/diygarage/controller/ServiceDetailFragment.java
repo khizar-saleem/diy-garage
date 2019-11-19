@@ -1,25 +1,29 @@
 package com.khizarms.diygarage.controller;
 
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.khizarms.diygarage.R;
-import com.khizarms.diygarage.controller.dummy.DummyContent;
 import com.khizarms.diygarage.view.ActionRecyclerAdapter;
 import com.khizarms.diygarage.viewmodel.ServiceDetailViewModel;
 
+/**
+ * The type Service detail fragment.
+ */
 public class ServiceDetailFragment extends Fragment implements View.OnClickListener {
 
 
+  /**
+   * The constant SERVICE_ID_KEY.
+   */
   public static final String SERVICE_ID_KEY = "service_id";
 
   private ServiceDetailViewModel viewModel;

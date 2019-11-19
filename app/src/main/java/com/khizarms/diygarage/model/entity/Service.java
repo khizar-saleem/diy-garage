@@ -8,6 +8,9 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Entity class encapsulating the basic properties of a service.
+ */
 @Entity(
     foreignKeys = {
         @ForeignKey(
@@ -36,35 +39,75 @@ public class Service implements Serializable {
   @ColumnInfo(name = "car_id", index = true)
   private long carId;
 
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
   public long getId() {
     return id;
   }
 
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
   public void setId(long id) {
     this.id = id;
   }
 
+  /**
+   * Gets date.
+   *
+   * @return the date
+   */
   @NonNull
   public Date getDate() {
     return date;
   }
 
+  /**
+   * Sets date.
+   *
+   * @param date the date
+   */
   public void setDate(@NonNull Date date) {
     this.date = date;
   }
 
+  /**
+   * Gets mileage.
+   *
+   * @return the mileage
+   */
   public int getMileage() {
     return mileage;
   }
 
+  /**
+   * Sets mileage.
+   *
+   * @param mileage the mileage
+   */
   public void setMileage(int mileage) {
     this.mileage = mileage;
   }
 
+  /**
+   * Gets car id.
+   *
+   * @return the car id
+   */
   public long getCarId() {
     return carId;
   }
 
+  /**
+   * Sets car id.
+   *
+   * @param carId the car id
+   */
   public void setCarId(long carId) {
     this.carId = carId;
   }

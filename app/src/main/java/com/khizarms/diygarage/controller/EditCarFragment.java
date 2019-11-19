@@ -6,19 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.SearchView.OnQueryTextListener;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,6 +24,12 @@ import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.viewmodel.EditCarViewModel;
 
+/**
+ * Alert dialog user interface component presenting the properties (year, make, model) of a car for
+ * editing.
+ *
+ * @author Khizar Saleem
+ */
 public class EditCarFragment extends DialogFragment {
 
   private Car car;
@@ -37,6 +41,12 @@ public class EditCarFragment extends DialogFragment {
   private TextView make;
   private ListView modelList;
 
+  /**
+   * Creates and returns an instance of {@link EditCarFragment} for editing a new passphrase.
+   *
+   * @param car the car
+   * @return {@link EditCarFragment} for display.
+   */
   public static EditCarFragment newInstance(Car car) {
     EditCarFragment fragment = new EditCarFragment();
     Bundle args = new Bundle();
@@ -142,10 +152,23 @@ public class EditCarFragment extends DialogFragment {
   }
 
 
+  /**
+   * The interface Car saver.
+   */
   public interface CarSaver {
 
+    /**
+     * Save.
+     *
+     * @param car the car
+     */
     void save(Car car);
 
+    /**
+     * Delete.
+     *
+     * @param car the car
+     */
     void delete(Car car);
   }
 

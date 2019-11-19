@@ -5,6 +5,9 @@ import com.facebook.stetho.Stetho;
 import com.khizarms.diygarage.service.DiyGarageDatabase;
 import com.khizarms.diygarage.service.GoogleSignInService;
 
+/**
+ * Class containing main (non-UI) entry point for this app.
+ */
 public class DiyGarageApplication extends Application {
 
   @Override

@@ -2,20 +2,26 @@ package com.khizarms.diygarage.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.khizarms.diygarage.R;
+import com.khizarms.diygarage.controller.EditActionFragment.ActionSaver;
+import com.khizarms.diygarage.model.entity.Action;
+import com.khizarms.diygarage.viewmodel.ServiceDetailViewModel;
 
 /**
  * An activity representing a single Service detail screen. This activity is only used on narrow
  * width devices. On tablet-size devices, item details are presented side-by-side with a list of
  * items in a {@link ServiceListActivity}.
  */
-public class ServiceDetailActivity extends AppCompatActivity {
+public class ServiceDetailActivity extends AppCompatActivity implements ActionSaver {
+
+  private ServiceDetailViewModel viewModel;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +30,9 @@ public class ServiceDetailActivity extends AppCompatActivity {
     Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
     setSupportActionBar(toolbar);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    FloatingActionButton fab = findViewById(R.id.fab);
     fab.setOnClickListener(
-        view -> Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show());
-
+        view -> newAction(null));
     // Show the Up button in the action bar.
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
@@ -56,6 +60,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
           .add(R.id.service_detail_container, fragment)
           .commit();
     }
+    viewModel = ViewModelProviders.of(this).get(ServiceDetailViewModel.class);
   }
 
   @Override
@@ -72,5 +77,16 @@ public class ServiceDetailActivity extends AppCompatActivity {
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void newAction(Action action) {
+    EditActionFragment fragment = EditActionFragment.newInstance(action);
+    fragment.show(getSupportFragmentManager(), fragment.getClass().getSimpleName());
+
+  }
+
+  @Override
+  public void save(Action action) {
+    viewModel.saveAction(action);
   }
 }

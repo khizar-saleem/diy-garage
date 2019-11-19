@@ -1,19 +1,20 @@
 package com.khizarms.diygarage.viewmodel;
 
 import android.app.Application;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
-import com.khizarms.diygarage.model.dao.ActionDao;
 import com.khizarms.diygarage.model.entity.Action;
 import com.khizarms.diygarage.model.entity.Action.ServiceType;
-import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.DiyGarageDatabase;
 import java.util.List;
 
+/**
+ * Supplier of {@link LiveData} intended to be consumed by an instance of {@link
+ * com.khizarms.diygarage.controller.EditActionFragment}
+ */
 public class EditActionViewModel extends AndroidViewModel {
 
   private final DiyGarageDatabase database;
@@ -22,6 +23,11 @@ public class EditActionViewModel extends AndroidViewModel {
   private LiveData<List<Action>> actions;
 
 
+  /**
+   * Instantiates a new Edit action view model.
+   *
+   * @param application the application
+   */
   public EditActionViewModel(@NonNull Application application) {
     super(application);
     database = DiyGarageDatabase.getInstance();
@@ -31,31 +37,40 @@ public class EditActionViewModel extends AndroidViewModel {
   }
 
 
+  /**
+   * Gets service id.
+   *
+   * @return the service id
+   */
   public MutableLiveData<Long> getServiceId() {
     return serviceId;
   }
 
+  /**
+   * Gets actions.
+   *
+   * @return the actions
+   */
   public LiveData<List<Action>> getActions() {
     return actions;
   }
 
+  /**
+   * Gets service type.
+   *
+   * @return the service type
+   */
   public LiveData<ServiceType> getServiceType() {
     return serviceType;
   }
 
+  /**
+   * Sets service type.
+   *
+   * @param serviceType the service type
+   */
   public void setServiceType(ServiceType serviceType) {
     this.serviceType.setValue(serviceType);
   }
 
-  public void addAction(Action action) {
-    ActionDao dao = database.getActionDao();
-    new Thread(() -> {
-      if (action.getServiceId() == 0 && action.getId() == 0) {
-        action.setServiceId(getServiceId().getValue());
-        dao.insert(action);
-      } else {
-        dao.update(action);
-      }
-    }).start();
-  }
 }

@@ -15,6 +15,11 @@ import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import java.util.Date;
 
+/**
+ * Alert dialog user interface component presenting the mileage property of a service for editing.
+ *
+ * @author Khizar Saleem
+ */
 public class EditServiceFragment extends DialogFragment {
 
   private Car car;
@@ -23,6 +28,12 @@ public class EditServiceFragment extends DialogFragment {
   private View dialogView;
 
 
+  /**
+   * Creates and returns an instance of {@link EditServiceFragment} for editing a new passphrase.
+   *
+   * @param service the service
+   * @return {@link EditServiceFragment} for display.
+   */
   public static EditServiceFragment newInstance(Service service) {
     EditServiceFragment fragment = new EditServiceFragment();
     Bundle args = new Bundle();
@@ -68,8 +79,16 @@ public class EditServiceFragment extends DialogFragment {
     ((ServiceSaver) getActivity()).save(service);
   }
 
+  /**
+   * The interface Service saver.
+   */
   public interface ServiceSaver {
 
+    /**
+     * Save.
+     *
+     * @param service the service
+     */
     void save(Service service);
   }
 }

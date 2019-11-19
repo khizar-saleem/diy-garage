@@ -1,0 +1,9 @@
+com.khizarms.diygarage
+com.khizarms.diygarage.controller
+com.khizarms.diygarage.controller.dummy
+com.khizarms.diygarage.model.dao
+com.khizarms.diygarage.model.entity
+com.khizarms.diygarage.model.pojo
+com.khizarms.diygarage.service
+com.khizarms.diygarage.view
+com.khizarms.diygarage.viewmodel

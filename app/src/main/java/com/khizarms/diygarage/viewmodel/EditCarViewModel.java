@@ -1,7 +1,6 @@
 package com.khizarms.diygarage.viewmodel;
 
 import android.app.Application;
-import android.provider.MediaStore.Audio.Media;
 import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,10 +10,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import com.khizarms.diygarage.service.DiyGarageDatabase;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
+/**
+ * Supplier of {@link LiveData} intended to be consumed by an instance of {@link
+ * com.khizarms.diygarage.controller.EditCarFragment}
+ */
 public class EditCarViewModel extends AndroidViewModel {
 
   private MutableLiveData<String> make = new MutableLiveData<>();
@@ -25,8 +26,11 @@ public class EditCarViewModel extends AndroidViewModel {
   private MakeModelLiveData makeModel = new MakeModelLiveData(make, modelPattern);
 
 
-
-
+  /**
+   * Instantiates a new Edit car view model.
+   *
+   * @param application the application
+   */
   public EditCarViewModel(@NonNull Application application) {
     super(application);
     database = DiyGarageDatabase.getInstance();
@@ -36,18 +40,38 @@ public class EditCarViewModel extends AndroidViewModel {
     });
   }
 
+  /**
+   * Gets makes.
+   *
+   * @return the makes
+   */
   public LiveData<List<String>> getMakes() {
     return database.getAvailableCarDao().getMakes();
   }
 
+  /**
+   * Sets make.
+   *
+   * @param make the make
+   */
   public void setMake(String make) {
     this.make.setValue(make);
   }
 
+  /**
+   * Gets models.
+   *
+   * @return the models
+   */
   public LiveData<List<String>> getModels() {
     return models;
   }
 
+  /**
+   * Sets model pattern.
+   *
+   * @param modelPattern the model pattern
+   */
   public void setModelPattern(String modelPattern) {
     this.modelPattern.setValue(modelPattern);
   }
@@ -55,6 +79,12 @@ public class EditCarViewModel extends AndroidViewModel {
   // Define LiveData based on a pair of LiveData elements
   private static class MakeModelLiveData extends MediatorLiveData<Pair<String, String>> {
 
+    /**
+     * Instantiates a new Make model live data.
+     *
+     * @param make         the make
+     * @param modelPattern the model pattern
+     */
     public MakeModelLiveData(LiveData<String> make, LiveData<String> modelPattern) {
       addSource(make, new Observer<String>() {
         @Override

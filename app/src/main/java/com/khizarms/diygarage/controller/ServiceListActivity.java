@@ -45,10 +45,6 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
   private MaterialButton addCarBtn;
   private MaterialButton deleteCarBtn;
   private FloatingActionButton addServiceBtn;
-  private Car car;
-  private Context context = this;
-  private EditActionViewModel actionListViewModel;
-
 
 
   @Override
@@ -122,20 +118,17 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
           if (twoPane) {
             // TODO Open ServiceDetailFragment, passing in service ID (service.getId()) in arguments.
             Bundle arguments = new Bundle();
-            arguments.putString(ServiceDetailFragment.SERVICE_ID_KEY, String.valueOf(service.getId()));
+            arguments.putLong(ServiceDetailFragment.SERVICE_ID_KEY, service.getId());
             ServiceDetailFragment fragment = new ServiceDetailFragment();
             fragment.setArguments(arguments);
             serviceListActivity.getSupportFragmentManager().beginTransaction()
                 .replace(R.id.service_detail_container, fragment)
                 .commit();
           } else {
-            // TODO Open ServiceDetailActivity, passin in service ID in Intent.
-            Context context = v.getContext();
-            Intent intent = new Intent(context, ServiceDetailActivity.class);
-            Log.d("here","");
-//            intent.putExtra(ServiceDetailFragment.SERVICE_ID_KEY, service.getId());
-
-            context.startActivity(intent);
+            // TODO Open ServiceDetailActivity, passing in service ID in Intent.
+            Intent intent = new Intent(ServiceListActivity.this, ServiceDetailActivity.class);
+            intent.putExtra(ServiceDetailFragment.SERVICE_ID_KEY, service.getId());
+            startActivity(intent);
           }
         }
       },

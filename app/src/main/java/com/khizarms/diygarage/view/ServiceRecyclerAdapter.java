@@ -75,7 +75,7 @@ public class ServiceRecyclerAdapter extends RecyclerView.Adapter<ServiceHolder>{
     }
 
     private void bind(Service service) {
-//      view.setTag(service);
+      view.setTag(service);
 //      view.setOnClickListener(new OnClickListener() {
 //        @Override
 //        public void onClick(View view) {

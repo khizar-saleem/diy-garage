@@ -48,8 +48,8 @@ public class ServiceDetailActivity extends AppCompatActivity {
       // Create the detail fragment and add it to the activity
       // using a fragment transaction.
       Bundle arguments = new Bundle();
-      arguments.putString(ServiceDetailFragment.SERVICE_ID_KEY,
-          getIntent().getStringExtra(ServiceDetailFragment.SERVICE_ID_KEY));
+      arguments.putLong(ServiceDetailFragment.SERVICE_ID_KEY,
+          getIntent().getLongExtra(ServiceDetailFragment.SERVICE_ID_KEY, 0));
       ServiceDetailFragment fragment = new ServiceDetailFragment();
       fragment.setArguments(arguments);
       getSupportFragmentManager().beginTransaction()

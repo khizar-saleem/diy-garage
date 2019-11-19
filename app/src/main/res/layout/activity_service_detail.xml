@@ -8,7 +8,15 @@
   tools:context=".controller.ServiceDetailActivity"
   tools:ignore="MergeRootFrame">
 
+<!--
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/service_detail_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+-->
+
+  <FrameLayout
     android:id="@+id/service_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,7 +55,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/fab_margin"
     android:layout_gravity="center_vertical|start"
-    app:layout_anchor="@+id/service_detail_container"
+    app:layout_anchor="@id/service_detail_container"
     app:layout_anchorGravity="top|end"
     app:srcCompat="@android:drawable/stat_notify_chat"/>
 

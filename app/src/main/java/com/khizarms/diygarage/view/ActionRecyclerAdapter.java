@@ -62,6 +62,7 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionHolder> {
   class ActionHolder extends RecyclerView.ViewHolder {
 
     private final View view;
+    private final TextView serviceType;
     private final TextView actionSummary;
     private final TextView actionDescription;
 
@@ -70,12 +71,14 @@ public class ActionRecyclerAdapter extends RecyclerView.Adapter<ActionHolder> {
       this.view = view;
       view.setOnClickListener(listener);
       view.setTag(null);
+      serviceType = view.findViewById(R.id.service_type);
       actionSummary = view.findViewById(R.id.action_summary);
       actionDescription = view.findViewById(R.id.action_description);
     }
 
     private void bind(Action action) {
       view.setTag(action);
+      serviceType.setText(action.getServiceType().toString());
       actionSummary.setText(action.getSummary());
       actionDescription.setText(action.getDescription());
     }

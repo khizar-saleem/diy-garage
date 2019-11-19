@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProviders;
 import com.khizarms.diygarage.R;
 import com.khizarms.diygarage.model.entity.Action;
 import com.khizarms.diygarage.model.entity.Action.ServiceType;
@@ -52,17 +53,15 @@ public class EditActionFragment extends DialogFragment {
   @Override
   public AlertDialog onCreateDialog(@Nullable Bundle savedInstanceState) {
     dialogView = getActivity().getLayoutInflater().inflate(R.layout.fragment_editaction, null);
-    serviceType = dialogView.findViewById(R.id.service_type);
     serviceTypeSpinner = dialogView.findViewById(R.id.service_type_spinner);
     actionSummary = dialogView.findViewById(R.id.action_edit_summary);
     actionDescription = dialogView.findViewById(R.id.action_edit_description);
-    ArrayAdapter<Enum> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+    ArrayAdapter<ServiceType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, ServiceType.values());
     serviceTypeSpinner.setAdapter(adapter);
     serviceTypeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-         MutableLiveData selection = (MutableLiveData) adapterView.getItemAtPosition(i);
-         serviceType.setText(selection.toString());
+         ServiceType selection = (ServiceType) adapterView.getItemAtPosition(i);
          viewModel.setServiceType(selection);
       }
 
@@ -93,6 +92,13 @@ public class EditActionFragment extends DialogFragment {
     action.setDescription(description);
     action.setServiceType((ServiceType) viewModel.getServiceType().getValue());
     ((ActionSaver) getActivity()).save(action);
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    viewModel = ViewModelProviders.of(this).get(EditActionViewModel.class);
+    viewModel.getServiceType().observe(this, (type) -> serviceTypeSpinner.setSelection(type.ordinal()));
   }
 
   public interface ActionSaver {

@@ -2,30 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="wrap_content"
+  android:layout_gravity="start">
 
   <TextView
     android:id="@+id/service_type"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="0.5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
     android:layout_margin="@dimen/text_margin"
     android:textAppearance="?attr/textAppearanceListItem"/>
 
 
   <TextView
     android:id="@+id/action_summary"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
     android:layout_margin="@dimen/text_margin"
     android:textAppearance="?attr/textAppearanceListItem"/>
 
   <TextView
     android:id="@+id/action_description"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
     android:layout_margin="@dimen/text_margin"
     android:textAppearance="?attr/textAppearanceListItem"/>
 

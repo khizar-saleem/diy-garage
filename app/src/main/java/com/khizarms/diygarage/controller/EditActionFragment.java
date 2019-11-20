@@ -112,8 +112,8 @@ public class EditActionFragment extends DialogFragment {
   }
 
   private void saveAction() {
-    String summary = actionSummary.toString();
-    String description = actionDescription.toString();
+    String summary = actionSummary.getText().toString();
+    String description = actionDescription.getText().toString();
     action.setSummary(summary);
     action.setDescription(description);
     action.setServiceType((ServiceType) viewModel.getServiceType().getValue());

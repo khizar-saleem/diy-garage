@@ -63,19 +63,20 @@ public class ServiceDetailActivity extends AppCompatActivity implements ActionSa
     //
     // http://developer.android.com/guide/components/fragments.html
     //
+    viewModel = ViewModelProviders.of(this).get(ServiceDetailViewModel.class);
     if (savedInstanceState == null) {
       // Create the detail fragment and add it to the activity
       // using a fragment transaction.
       Bundle arguments = new Bundle();
-      arguments.putLong(ServiceDetailFragment.SERVICE_ID_KEY,
-          getIntent().getLongExtra(ServiceDetailFragment.SERVICE_ID_KEY, 0));
+      long serviceId = getIntent().getLongExtra(ServiceDetailFragment.SERVICE_ID_KEY, 0);
+      arguments.putLong(ServiceDetailFragment.SERVICE_ID_KEY, serviceId);
       ServiceDetailFragment fragment = new ServiceDetailFragment();
       fragment.setArguments(arguments);
       getSupportFragmentManager().beginTransaction()
           .add(R.id.service_detail_container, fragment)
           .commit();
+      viewModel.setServiceId(serviceId);
     }
-    viewModel = ViewModelProviders.of(this).get(ServiceDetailViewModel.class);
   }
 
   @Override

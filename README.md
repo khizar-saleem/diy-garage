@@ -4,15 +4,18 @@
 
 ## Introduction &amp; Description
 
-* DIY Garage is an app that is meant to rid the world of the fear of getting down and dirty with 
-personal vehicles. Why waste money paying someone else to do the job when you can do it yourself?
-With some basic tools and the will, you can use DIY Garage to learn how to do important routine
-maintenance such as tire rotations, oil changes, transmission flushes and much more. DIY Garage
-allows you to keep records of the services that have already been done and when services need to
-done again so you can keep your cars running for as long as possible. This app is perfect for
-DIY'ers or people who just want an app to keep records of their cars.   
+* DIY Garage allows you to keep maintenance records of the services that have already been done and (in the future)
+when services need to done again so you can keep your vehicles running for as long as possible. You can add all your cars 
+to the database of the app. For each of those cars you can add services according to the date and mileage. And for
+each of those services you add all the different things that were done. Since all that information is being added to the
+database of the app, the info stays until you delete it. 
 
-* My aim in developing this app 
+* My aim in developing DIY Garage is to rid the world of the fear of getting down and dirty with 
+personal vehicles. Why waste money paying someone else to do the job when you can do it yourself?
+In future versions of the app, you can use DIY Garage to learn how to do important routine
+maintenance such as tire rotations, oil changes, transmission flushes and much more. 
+
+
 
 ## Intended Users &amp; User Stories
 
@@ -28,11 +31,11 @@ DIY'ers or people who just want an app to keep records of their cars.
 
 * The ability to add an acquisition date is not implemented yet.
 * The ability to edit and delete cars, services, actions is not implemented yet.
-* There is bug that crashes the app when trying to add an action using the alert dialog.
 * When in landscape mode the spinner and buttons next to it do not stretch to fill screen.
 * Pressing the back button in the actions toolbar resets spinner to top item in spinner, 
 not the most recently selected car.
 * Clicking save in New Car alert dialog when nothing is typed in fields crashes the app.
+* Clicking save in Add Service alert dialog when nothing is typed in mileage crashes the app.
 * In the Nexus 5X emulator spinner and buttons next to dont fill screen.
 
 ### Cosmetic improvements needed
@@ -88,41 +91,51 @@ not the most recently selected car.
 
 ## Build Instructions 
 
-1) Go to the [GitHub repository](https://github.com/khizar-saleem/diy-garage)
+1. Go to the [GitHub repository](https://github.com/khizar-saleem/diy-garage)
 
-2) Click on Clone or download
+2. Click on Clone or download
 
-3) Make sure Clone with SSH is selected and click the clipboard icon to copy the SSH key
+3. Make sure Clone with SSH is selected and click the clipboard icon to copy the SSH key
 
-4) Use the IntelliJ Check out from Version Control/Git (from the welcome screen) or 
-File/New/Project from Version Control/Git (from the workspace) command to clone.
+4. Use the IntelliJ Check out from Version Control/Git (from the welcome screen) or File/New/Project from Version Control/Git (from the workspace) command to clone.
   
-5) DO NOT click open when prompted to do so.
+5. DO NOT click open when prompted to do so.
 
-6) Import the project you just cloned. In the Import Project window, select Import project from 
-external model and then the Gradle item in the list.
+6. Import the project you just cloned. In the Import Project window, select Import project from external model and then the Gradle item in the list.
 
-7) After the project is imported add a run configuration. This should use the Android App 
-configuration, with a Name of "app", and with app selected from the Module pull-down control.
+7. After the project is imported add a run configuration. This should use the Android App configuration, with a Name of "app", and with app selected from the Module pull-down control.
 
-8) Click the run icon and select the device you wish to run it on.
+8. Click the run icon and select the device you wish to run it on.
 
 ## Basic User Instructions
 
-1) Launch app, click Sign In, and sign in with your Google account.
+1. Launch app, click Sign In, and sign in with your Google account.
 
-2) To add a car, click the + icon next to the spinner/drop down.
+2. To add a car, click the + icon next to the spinner/drop down.
 
-3) Enter the year, select the make and enter model of the car.
+3. Enter the year, select the make and enter model of the car.
 
-4) Click SAVE to add it to the database and spinner.
+4. Click SAVE to add it to the database and spinner.
 
-5) To add a service select a car from the spinner and click the + button at the bottom right.
+5. To add a service select a car from the spinner and click the + button at the bottom right.
 
-6) Enter the current mileage of your car click SAVE.
+6. Enter the current mileage of your car click SAVE.
 
-7) To add an action click on the service that was just created and click the + button on the
-bottom right.
+7. To add an action click on the service that was just created and click the + button on the bottom right.
 
 ## DIY Garage, All Rights Reserved
-[DIY Garage License](https://github.com/khizar-saleem/diy-garage/blob/master/LICENSE)
+```text
+Copyright 2019 Khizar Saleem
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```

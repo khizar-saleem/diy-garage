@@ -124,3 +124,5 @@ configuration, with a Name of "app", and with app selected from the Module pull-
 7) To add an action click on the service that was just created and click the + button on the
 bottom right.
 
+## DIY Garage, All Rights Reserved
+[DIY Garage License](https://github.com/khizar-saleem/diy-garage/blob/master/LICENSE)

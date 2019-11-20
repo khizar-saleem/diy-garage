@@ -50,6 +50,7 @@ not the most recently selected car.
 ### Functional Stretch Goals
 
 * Take information from cars, services and actions to add YouTube links
+* Add reminders for the next time a service is need.
 
 ## Diagrams
 

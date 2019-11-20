@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", '"https://www.fueleconomy.gov/ws/rest/vehicle/menu/"'
+        buildConfigField "String", "CLIENT_ID", '"174202725320-im3jq7lj50eguqvcl6he1c46cv6piiva.apps.googleusercontent.com"'
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]

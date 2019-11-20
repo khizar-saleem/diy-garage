@@ -83,48 +83,44 @@ not the most recently selected car.
 
 ## Copyrights &amp; Licenses
 
-* [Full License](LICENSE)
+* [Full License](docs/license.md)
 * [Third Party Licenses](docs/license-info.md)
 
 ## Build Instructions 
 
 1) Go to the [GitHub repository](https://github.com/khizar-saleem/diy-garage)
+
 2) Click on Clone or download
+
 3) Make sure Clone with SSH is selected and click the clipboard icon to copy the SSH key
+
 4) Use the IntelliJ Check out from Version Control/Git (from the welcome screen) or 
-File/New/Project from Version Control/Git (from the workspace) command to clone.  
+File/New/Project from Version Control/Git (from the workspace) command to clone.
+  
 5) DO NOT click open when prompted to do so.
+
 6) Import the project you just cloned. In the Import Project window, select Import project from 
 external model and then the Gradle item in the list.
+
 7) After the project is imported add a run configuration. This should use the Android App 
 configuration, with a Name of "app", and with app selected from the Module pull-down control.
+
 8) Click the run icon and select the device you wish to run it on.
 
 ## Basic User Instructions
 
 1) Launch app, click Sign In, and sign in with your Google account.
+
 2) To add a car, click the + icon next to the spinner/drop down.
+
 3) Enter the year, select the make and enter model of the car.
+
 4) Click SAVE to add it to the database and spinner.
+
 5) To add a service select a car from the spinner and click the + button at the bottom right.
+
 6) Enter the current mileage of your car click SAVE.
+
 7) To add an action click on the service that was just created and click the + button on the
 bottom right.
 
-## First Milestone
-
-* [x] Description
-* [x] Intended Users &amp; user stories
-* [x] Entity-relationship diagrams (ERDs)
-* [x] Wireframes
-
-## Second Milestone
-
-* [x] Description
-* [x] Intended Users &amp; user stories
-* [x] Entity-relationship diagrams (ERDs)
-* [x] Entity Classes
-* [x] DAO Interfaces
-* [x] Database Class
-* [x] DDL
-* [x] Chrome Inspectability of Data Model

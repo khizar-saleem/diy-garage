@@ -79,7 +79,7 @@ not the most recently selected car.
 
 ## Javadoc-generated Technical Documentation
 
-* [Javadoc](docs/api)
+* [Javadoc](docs/api/overview-summary.html)
 
 ## Copyrights &amp; Licenses
 

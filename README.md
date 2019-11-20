@@ -86,7 +86,7 @@ not the most recently selected car.
 
 ## Copyrights &amp; Licenses
 
-* [Full License](docs/license.md)
+* [Full License](docs/full-license.md)
 * [Third Party Licenses](docs/license-info.md)
 
 ## Build Instructions 

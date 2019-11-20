@@ -31,6 +31,7 @@ maintenance such as tire rotations, oil changes, transmission flushes and much m
 
 * The ability to add an acquisition date is not implemented yet.
 * The ability to edit and delete cars, services, actions is not implemented yet.
+* Tablet mode is not yet fully implemented.
 * When in landscape mode the spinner and buttons next to it do not stretch to fill screen.
 * Pressing the back button in the actions toolbar resets spinner to top item in spinner, 
 not the most recently selected car.

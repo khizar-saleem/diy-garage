@@ -11,4 +11,5 @@
   <string name="mileage">Mileage</string>
   <string name="summary">Summary</string>
   <string name="description">Description</string>
+  <string name="oauth_header">Bearer %s</string>
 </resources>

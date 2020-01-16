@@ -41,6 +41,7 @@ import com.khizarms.diygarage.model.entity.Car;
 import com.khizarms.diygarage.model.entity.Service;
 import com.khizarms.diygarage.service.GoogleSignInService;
 import com.khizarms.diygarage.view.ServiceRecyclerAdapter;
+import com.khizarms.diygarage.viewmodel.MainViewModel;
 import com.khizarms.diygarage.viewmodel.ServiceListViewModel;
 
 /**
@@ -55,6 +56,7 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
 
   private boolean twoPane;
   private ServiceListViewModel viewModel;
+  private MainViewModel mainViewModel;
   private GoogleSignInService signInService = GoogleSignInService.getInstance();
   private MaterialButton addCarBtn;
   private MaterialButton deleteCarBtn;
@@ -66,6 +68,8 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_service_list);
 
+    setupViewModel();
+    setupSignIn();
     Spinner spinner = findViewById(R.id.car_selector);
     addServiceBtn = findViewById(R.id.fab);
     addServiceBtn.setOnClickListener(view -> newService(null));
@@ -73,7 +77,8 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
     addCarBtn.setOnClickListener(view -> newCar(null));
     viewModel = ViewModelProviders.of(this).get(ServiceListViewModel.class);
     viewModel.getCars().observe(this, (cars) -> {
-      ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cars);
+      ArrayAdapter<Car> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+          cars);
       spinner.setAdapter(adapter);
     });
     spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -111,6 +116,17 @@ public class ServiceListActivity extends AppCompatActivity implements CarSaver, 
 
     RecyclerView recyclerView = findViewById(R.id.service_list);
     setupRecyclerView(recyclerView);
+  }
+
+  private void setupViewModel() {
+    mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    getLifecycle().addObserver(mainViewModel);
+  }
+
+  private void setupSignIn() {
+    signInService.getAccount().observe(this, (account) -> {
+      mainViewModel.setAccount(account);
+    });
   }
 
   @Override

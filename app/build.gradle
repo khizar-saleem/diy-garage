@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", '"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=YOURKEYWORD&type=video&key=YOURAPIKEY"'
+        buildConfigField "String", "BASE_URL", '"https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20"'
         buildConfigField "String", "CLIENT_ID", '"174202725320-im3jq7lj50eguqvcl6he1c46cv6piiva.apps.googleusercontent.com"'
         javaCompileOptions {
             annotationProcessorOptions {
